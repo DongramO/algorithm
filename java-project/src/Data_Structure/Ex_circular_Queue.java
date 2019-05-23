@@ -1,4 +1,4 @@
-package algo;
+package Data_Structure;
 
 /**
  * Created by idongsu on 20/05/2019.

@@ -1,4 +1,4 @@
-package algo;
+package Data_Structure;
 
 import java.io.IOException;
 
