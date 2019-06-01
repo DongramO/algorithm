@@ -29,7 +29,7 @@ public class Ex_heap_sort {
         int p = i;
         int left_node = i * 2 + 1;
         int right_node = i * 2 + 2;
-        
+
         if(left_node < n && arr[left_node] > arr[p]) p = left_node;
 
         if(right_node < n && arr[right_node] > arr[p]) p = right_node;

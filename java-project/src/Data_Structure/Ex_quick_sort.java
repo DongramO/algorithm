@@ -9,12 +9,15 @@ public class Ex_quick_sort {
     static int[] arr;
     public static void main(String arg[]) {
 
-        init_array(10);
-//        System.out.println("정렬렬 전 " + Arrays.toString(arr));
-        arr = new int[]{2, 8, 3, 10, 6, 5, 7, 1, 9, 4};
+        init_array(20);
+
+//        arr = new int[]{2, 4, 1, 4, 4, 4, 7, 1, 5, 4};
         System.out.println("원본" + Arrays.toString(arr));
+
+
         quickSort(0, arr.length-1);
-        System.out.println("정렬 후 " + Arrays.toString(arr));
+
+        System.out.println("최종" + Arrays.toString(arr));
     }
 
     static void init_array(int size) {
@@ -27,78 +30,31 @@ public class Ex_quick_sort {
 
     static void quickSort(int left, int right) {
         int i, j, pivot, tmp;
-        System.out.println("LEFT :  "+ left + " RIGHT " + right + " PIVOT :" +  (left+right)/2);
-        System.out.println("원본" + Arrays.toString(arr));
-        System.out.println();
+
+        pivot = (left+right)/2;
 
         if (left < right) {
-            i = left;   j = right;
-            pivot = arr[(left+right)/2];
+
+            swap(left, pivot);
 
             //분할 과정
-            while (i < j) {
-                while (arr[j] > pivot) j = j-1;
-                // 이 부분에서 arr[j-1]에 접근해서 익셉션 발생가능함.
-                while (i < j && arr[i] <= pivot) i = i+1;
-
-                tmp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = tmp;
-
+            int border = left + 1 ;
+            for(int t= border; t <= right; t++) {
+                if(arr[t] < arr[left]) {
+                    swap(t, border++);
+                }
             }
-            System.out.println("i :  "+ i + " j : " + j + " PIVOT :" +  (left+right)/2);
-            System.out.println("끝" + Arrays.toString(arr));
+            swap(left, border-1);
 
-            tmp = pivot;
-            arr[(left+right)/2] = arr[j];
-            arr[j] = tmp;
-
-            System.out.println("끝" + Arrays.toString(arr));
-
-
-//            //정렬 과정
-//            quickSort(left, i - 1);
-//            quickSort(i + 1, right);
+            //정렬 과정
+            quickSort(left, border-2);
+            quickSort(border, right);
         }
     }
 
-//    static void quickSort(int left, int right) {
-//
-//        if(left < right) {
-//
-//            int pivot = partition(left, right);
-//
-//            quickSort(left, pivot-1);
-//            quickSort(pivot+1, right);
-//        }
-//    }
-//
-//    static int partition(int left, int right) {
-//
-//        int pivot = (left + right)/2;
-//        int start = left;
-//        int end = right;
-//
-//        while (left < right) {
-//
-//            while (arr[left] < arr[pivot] && left < end) left++;
-//            while (arr[right] > arr[pivot]) right--;
-//
-//            System.out.println("LEFT : " + left + " RIGHT :"+ right);
-//            if (left <= right) {
-//
-//                int temp = arr[left];
-//                arr[left] = arr[right];
-//                arr[right] = temp;
-//
-//            }
-//        }
-//        int temp = arr[left];
-//        arr[left] = arr[right];
-//        arr[right] = temp;
-//
-//        System.out.println("PIVOT : " + pivot);
-//        System.out.println("정렬 후 " + Arrays.toString(arr));
-//        return pivot;
-//    }
+    static void swap(int index , int index2) {
+        int temp = arr[index];
+        arr[index] = arr[index2];
+        arr[index2] = temp;
+    }
 }

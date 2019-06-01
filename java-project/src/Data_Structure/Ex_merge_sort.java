@@ -24,6 +24,7 @@ public class Ex_merge_sort {
 
     static void mergeSort(int start, int end) {
         if(start < end) {
+
             int middle = (start + end)/ 2;
 
             mergeSort(start, middle); // 앞에꺼
@@ -40,11 +41,14 @@ public class Ex_merge_sort {
         int k = 0;
 
         while(i <= middle && j <= end) {
+            // 두개를 비교해서 큰 값을 넣는다
             if(arr[i] < arr[j]) temp_arr[k++] = arr[i++];
             else temp_arr[k++] = arr[j++];
-
         }
 
+        // 나머지 값을 다 넣는다.
+        // 두개의 인덱스 start, middle 중에서
+        // 각 분할된 범위에서 start <= middle 이고 middle <= end 까지의 범위를 갖는다
         while(i <= middle) temp_arr[k++] = arr[i++];
         while(j <= end) temp_arr[k++] = arr[j++];
 
