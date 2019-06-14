@@ -58,7 +58,7 @@ public class boj_2644 {
 
             Dot dot = q.poll();
             int r = dot.r + 1;
-            
+
             for(int i=1; i<=n; ++i) {
 
                 if(map[dot.a][i] == 0) continue;
