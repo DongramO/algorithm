@@ -41,58 +41,59 @@ public class boj_1260 {
         }
 
     }
-}
+    static class Graph {
+        public static ArrayList<Integer> bfs(int[][] ad, int[] visit, int start) {
+            Queue<Integer> q = new LinkedList<>();
 
-class Graph {
-    public static ArrayList<Integer> bfs(int[][] ad, int[] visit, int start) {
-        Queue<Integer> q = new LinkedList<>();
+            ArrayList<Integer> result = new ArrayList<>();
 
-        ArrayList<Integer> result = new ArrayList<>();
+            q.add(start);
+            visit[start] = 1;
+            int n = ad.length -1;
 
-        q.add(start);
-        visit[start] = 1;
-        int n = ad.length -1;
+            while(!q.isEmpty()) {
+                start = q.poll();
+                result.add(start);
 
-        while(!q.isEmpty()) {
-            start = q.poll();
+                for(int i = 1; i <= n; ++i) {
+                    if(ad[start][i] != 0 && visit[i] == 0) {
+                        q.add(i);
+                        visit[i] = 1;
+                    }
+                }
+            }
+            return result;
+        }
+
+        public static ArrayList<Integer> dfs(int[][] ad, int[] visit, int start) {
+            Stack<Integer> stack = new Stack<>();
+            ArrayList<Integer> result = new ArrayList<>();
+
+            int n = ad.length -1;
+            visit[start] =1;
+            stack.push(start);
             result.add(start);
 
-            for(int i = 1; i <= n; ++i) {
-                if(ad[start][i] != 0 && visit[i] == 0) {
-                    q.add(i);
-                    visit[i] = 1;
+            while(!stack.isEmpty()) {
+                boolean flag = false;
+                int v = stack.peek();
+
+                for(int i=1; i<=n; ++i) {
+                    if(ad[v][i] != 0 && visit[i] == 0) {
+                        stack.push(i);
+                        result.add(i);
+                        visit[i] = 1;
+                        flag = true;
+                        break;
+                    }
+                }
+                if(!flag) {
+                    stack.pop();
                 }
             }
+            return result;
         }
-        return result;
-    }
-
-    public static ArrayList<Integer> dfs(int[][] ad, int[] visit, int start) {
-        Stack<Integer> stack = new Stack<>();
-        ArrayList<Integer> result = new ArrayList<>();
-
-        int n = ad.length -1;
-        visit[start] =1;
-        stack.push(start);
-        result.add(start);
-
-        while(!stack.isEmpty()) {
-            boolean flag = false;
-            int v = stack.peek();
-
-            for(int i=1; i<=n; ++i) {
-                if(ad[v][i] != 0 && visit[i] == 0) {
-                    stack.push(i);
-                    result.add(i);
-                    visit[i] = 1;
-                    flag = true;
-                    break;
-                }
-            }
-            if(!flag) {
-                stack.pop();
-            }
-        }
-        return result;
     }
 }
+
+

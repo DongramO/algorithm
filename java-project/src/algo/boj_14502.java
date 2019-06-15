@@ -129,14 +129,14 @@ public class boj_14502 {
             }
         }
     }
-}
+    static class Dot {
 
-class Dot {
+        int x, y;
 
-    int x, y;
-
-    Dot(int x, int y) {
-        this.x = x;
-        this.y = y;
+        Dot(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }
+
