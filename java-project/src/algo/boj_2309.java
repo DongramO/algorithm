@@ -46,20 +46,23 @@ public class boj_2309 {
 
         result[depth] = t[start];
 
-        // 해당 원소를 포함하지 않은 경우
+        // 해당 원소를 포함한 경우
         recursive(start+1, depth+1, index+1, result);
 
-        // 해당 원소를 포함한 않은 경우
+        // 해당 원소를 포함하지 않은 경우
         recursive(start+1, depth, index+1, result);
 
     }
 
     static boolean check(int[] result) {
         int sum = 0;
+
         for(int i=0; i<result.length; ++i) {
             sum += result[i];
         }
+
         if(sum == 100) return true;
+
         return false;
     }
 }
