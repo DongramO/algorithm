@@ -39,6 +39,7 @@ public class boj_13458 {
         b = Integer.parseInt(st.nextToken());
         cnta = 0;
 
+
         solveA();
         solveB();
 
